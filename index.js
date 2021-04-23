@@ -1,7 +1,10 @@
 const app = require("express")()
 const mongoose = require("mongoose")
+const bodyParser = require("body-parser")
+
 
 const PostRoutes = require("./routes/PostsRoutes")
+const UsersRoutes = require("./routes/UsersRoutes")
 
 
 
@@ -20,7 +23,9 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
 })
 
 
+app.use(bodyParser.json())
 app.use("/posts/", PostRoutes);
+app.use("/users/", UsersRoutes);
 
 app.get("/", (req, res)=>{
     res.json("Works :)")
