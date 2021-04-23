@@ -1,15 +1,14 @@
 const express = require("express")
 const app = express();
-const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 
-const PostRoutes = require("./routes/PostsRoutes")
-const UsersRoutes = require("./routes/UsersRoutes")
-const AuthRoutes = require("./routes/AuthRoutes")
+const PostRoutes = require("./routes/PostsRoutes");
+const UsersRoutes = require("./routes/UsersRoutes");
 
 
-const port = process.env.PORT || 2021
+const port = process.env.PORT || 2021;
 
 
 
@@ -31,7 +30,6 @@ app.use(express.static(__dirname + '/public'));
 
 app.use("/posts/", PostRoutes);
 app.use("/users/", UsersRoutes);
-app.use("/auth/", AuthRoutes)
 
 app.get("/", (req, res)=>{
     res.render("index")
