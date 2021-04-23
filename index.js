@@ -1,4 +1,5 @@
-const app = require("express")()
+const express = require("express")
+const app = express();
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 
@@ -23,10 +24,11 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
 })
 
 app.set("view engine", "ejs")
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json())
 app.use("/posts/", PostRoutes);
 app.use("/users/", UsersRoutes);
 
 app.get("/", (req, res)=>{
-    res.json("Works :)")
+    res.render("index")
 })
