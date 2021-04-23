@@ -35,5 +35,20 @@ Router.get("/all", async (req, res)=>{
 })
 
 
+Router.get("/specific/:ID", async (req, res)=>{
+
+    let ID = req.params.ID;
+    try {
+        const data = await User.findById(ID);
+        return res.send(data);
+
+
+    } catch (error) {
+        return res.json(error)
+    }
+})
+
+
+
 
 module.exports = Router;
