@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 
 const PostRoutes = require("./routes/PostsRoutes")
 const UsersRoutes = require("./routes/UsersRoutes")
-
+const AuthRoutes = require("./routes/AuthRoutes")
 
 
 const port = process.env.PORT || 2021
@@ -23,11 +23,15 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
     })
 })
 
+
+app.use(express.urlencoded());
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json())
+
+
 app.use("/posts/", PostRoutes);
 app.use("/users/", UsersRoutes);
+app.use("/auth/", AuthRoutes)
 
 app.get("/", (req, res)=>{
     res.render("index")
