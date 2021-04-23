@@ -1,6 +1,9 @@
 const app = require("express")()
 const mongoose = require("mongoose")
 
+const PostRoutes = require("./routes/PostsRoutes")
+
+
 
 const port = process.env.PORT || 2021
 
@@ -17,7 +20,7 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
 })
 
 
-
+app.use("/posts/", PostRoutes);
 
 app.get("/", (req, res)=>{
     res.json("Works :)")
