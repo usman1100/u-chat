@@ -5,5 +5,24 @@
     "express": "^4.17.1",
     "mongoose": "^5.12.5",
     "nodemailer": "^6.5.0"
-  }
+  },
+  "name": "u-chat",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usman1100/u-chat.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/usman1100/u-chat/issues"
+  },
+  "homepage": "https://github.com/usman1100/u-chat#readme"
 }
