@@ -6,12 +6,11 @@ const User = require("../models/User")
 Router.post("/signin", async  (req, res)=>{
 
     const {username, pass} = req.body;
-    console.log(req.body);
     const data = await User.findOne({username:username});
 
     if(data != null){
         if (pass === data.password){
-            return res.json("logged in")
+            return res.render("home", user=data)
         }
         else
             res.json("wrong password")
