@@ -11,10 +11,10 @@ Router.post("/signin", async  (req, res)=>{
 
     if(data != null){
         if (pass === data.password){
-            return res.send("logged in")
+            return res.json("logged in")
         }
         else
-            res.send("wrong password " + data.password)
+            res.json("wrong password")
     }
     else
         return res.json("user not found").status(404)

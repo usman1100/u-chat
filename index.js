@@ -23,7 +23,7 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
     })
 })
 
-
+app.use(bodyParser.json())
 app.use(express.urlencoded());
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/public'));
