@@ -25,6 +25,15 @@ Router.post("/new", async (req, res)=>{
     
 })
 
+Router.get("/all", async (req, res)=>{
+    try {
+        const data = await User.find();
+        res.json(data)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 
 
 module.exports = Router;
