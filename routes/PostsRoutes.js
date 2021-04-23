@@ -6,4 +6,8 @@ Router.get("/all",  (req, res)=>{
 })
 
 
+Router.get("/specific/:PostID", (req, res) => {
+    res.json({"PostID":req.params.PostID})
+})
+
 module.exports = Router;
