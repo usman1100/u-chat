@@ -1,12 +1,12 @@
 const express = require("express")
-const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+const session = require("express-session")
 
 const PostRoutes = require("./routes/PostsRoutes");
 const UsersRoutes = require("./routes/UsersRoutes");
 
+const app = express();
 
 const port = process.env.PORT || 2021;
 
@@ -22,8 +22,10 @@ mongoose.connect("mongodb://localhost:27017/uchat", {
     })
 })
 
+
 app.use(bodyParser.json())
 app.use(express.urlencoded());
+app.use(session({secret:"sus"}))
 app.set("view engine", "ejs")
 app.use(express.static(__dirname + '/public'));
 

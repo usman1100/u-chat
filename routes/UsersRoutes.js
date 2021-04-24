@@ -78,7 +78,8 @@ Router.post("/signin", async  (req, res)=>{
 
     if(data != null){
         if (pass === data.password){
-            return res.render("home", user=data)
+            req.session.user = data;
+            return res.redirect("/users/home")
         }
         else
             res.json("wrong password")
@@ -87,7 +88,15 @@ Router.post("/signin", async  (req, res)=>{
         return res.json("user not found").status(404)
 })
 
+Router.get("/home", (req, res)=>{
+    if(req.session.user){
+        return res.render("home", user=req.session.user)
+    }
 
+    else{
+        res.json("You are not logged in")
+    }
+})
 
 
 module.exports = Router;
