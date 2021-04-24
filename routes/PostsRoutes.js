@@ -2,8 +2,16 @@ const Router = require("express").Router();
 const Post = require("../models/PostModel")
 
 
-Router.get("/all",  (req, res)=>{
-    res.json("all posts")
+Router.get("/all", async  (req, res)=>{
+    try
+    {
+        const data = await Post.find();
+        return res.json(data);
+    }
+
+    catch(err){
+        return res.json(err).status(501);
+    }
 })
 
 
