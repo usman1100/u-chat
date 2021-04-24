@@ -73,6 +73,10 @@ Router.get("/search/:username", async (req, res)=>{
 
 Router.post("/signin", async  (req, res)=>{
 
+    if(req.session.user){
+        return res.json("You are alredy logged in as " + req.session.user.username);
+    }
+
     const {username, pass} = req.body;
     const data = await User.findOne({username:username});
 
@@ -82,7 +86,7 @@ Router.post("/signin", async  (req, res)=>{
             return res.redirect("/users/home")
         }
         else
-            res.json("wrong password")
+            return res.json("wrong password")
     }
     else
         return res.json("user not found").status(404)
@@ -94,8 +98,13 @@ Router.get("/home", (req, res)=>{
     }
 
     else{
-        res.json("You are not logged in")
+        return res.json("You are not logged in")
     }
+})
+
+Router.get("/logout", (req, res)=>{
+    req.session.user = undefined
+    return res.redirect("/")
 })
 
 
