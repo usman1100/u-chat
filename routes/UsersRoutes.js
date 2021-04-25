@@ -1,5 +1,6 @@
 const Router = require("express").Router();
 const User = require("../models/User")
+const Post = require("../models/PostModel")
 
 
 Router.post("/new", async (req, res)=>{
@@ -92,9 +93,14 @@ Router.post("/signin", async  (req, res)=>{
         return res.json("user not found").status(404)
 })
 
-Router.get("/home", (req, res)=>{
+Router.get("/home", async (req, res)=>{
     if(req.session.user){
-        return res.render("home", user=req.session.user)
+        const posts = await Post.find({postedBy:req.session.user.username})
+
+        return res.render("home", {
+            user:req.session.user,
+            posts:posts
+        })
     }
 
     else{
