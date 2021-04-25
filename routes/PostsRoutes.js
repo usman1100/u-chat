@@ -57,7 +57,7 @@ Router.post("/create/new", async (req, res) => {
 
     try {
         const data = await newPost.save();
-        return res.json("Success");
+        return res.redirect("/users/home")
     }
 
     catch (err) {
