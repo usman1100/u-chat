@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 app.use(express.urlencoded());
 app.use(session({secret:"sus"}))
 app.set("view engine", "ejs")
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 
 app.use("/posts/", PostRoutes);
