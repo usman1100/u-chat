@@ -53,7 +53,7 @@
                     <%= e.title %> 
                 </strong></p>
 
-                <p><%= e.body %> </p>
+                <p class="post-body"><%= e.body %> </p>
 
             </div>
 
@@ -71,6 +71,48 @@
         padding: 2%;
         margin: 10%;
     }
+
+    .dont-break-out {
+
+        /* These are technically the same, but use both */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+        word-break: break-word;
+      
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      
+      }
 </style>
+
+<script>
+    const urlify = (text) => {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function (url) {
+            return '<a class="dont-break-out" target="_blank" href="' + url + '">' + url + '</a>';
+        })
+    }
+    
+    window.addEventListener('load', function () {
+        let pTags = document.querySelectorAll(".post-body");
+        pTags.forEach((tag) => {
+            let trasnformedContent = urlify(tag.innerHTML);
+            tag.innerHTML = trasnformedContent;
+        })
+    
+    })
+    
+    
+    
+</script>
+
 
 </html>
