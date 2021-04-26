@@ -35,7 +35,12 @@ Router.get("/create", (req, res) => {
         return res.render("newPost");
     }
 
-    return res.json("You are not logged in").status(401);
+    let messageData = {
+        title:"Authentication Error",
+        messages:["You are not logged in"]
+    }
+
+    return res.render("message", messageData);
 })
 
 
