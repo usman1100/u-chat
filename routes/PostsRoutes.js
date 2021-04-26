@@ -13,6 +13,19 @@ Router.get("/all", async (req, res) => {
     }
 })
 
+Router.get("/specific/:postID", async (req, res) => {
+
+    const postID = req.params.postID;
+    try {
+        const data = await Post.findById(postID);
+        return res.json(data);
+    }
+
+    catch (err) {
+        return res.json(err).status(501);
+    }
+})
+
 
 Router.get("/postedby/:username", async (req, res) => {
     try {
