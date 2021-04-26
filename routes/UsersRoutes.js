@@ -75,7 +75,11 @@ Router.get("/search/:username", async (req, res)=>{
 Router.post("/signin", async  (req, res)=>{
 
     if(req.session.user){
-        return res.json("You are alredy logged in as " + req.session.user.username);
+        let messageData = {
+            title:"Already Logged in",
+            messages:["You are alredy logged in as " + req.session.user.username]
+        }
+        return res.render("message", messageData);
     }
 
     const {username, pass} = req.body;
@@ -104,7 +108,11 @@ Router.get("/home", async (req, res)=>{
     }
 
     else{
-        return res.json("You are not logged in")
+        let messageData = {
+            title:"Authentication Error",
+            messages:["You are not logged in"]
+        }
+        return res.render("message", messageData);
     }
 })
 
